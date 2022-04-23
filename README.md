@@ -1,6 +1,10 @@
 # parcial3_2552952017
 
-A new Flutter project.
+Proyecto parcial 3 - Consumo de API de bebidas
+
+Endpoint: https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a
+
+Estudiante: Felíx Iván Meléndez - 25-5295-2017
 
 ## Getting Started
 
