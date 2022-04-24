@@ -49,8 +49,35 @@ class _Parcial3State extends State<Parcial3> {
       future: _listadoBebida,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return ListView(
-            children: _listadoBebidas(snapshot.data),
+          return Container(
+            // child: ListView(
+            //   children: _listadoBebidas(snapshot.data),
+            // ),
+            child: ListView(children: [
+              Container(
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(
+                          left: 5, right: 5, top: 10, bottom: 10),
+                      child: Column(
+                        children: <Widget>[
+                          Buscar("Buscar bebida"),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                height: 500,
+                child: ListView(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  children: _listadoBebidas(snapshot.data),
+                ),
+              ),
+            ]),
           );
         } else if (snapshot.hasError) {
           print(snapshot.error);
@@ -91,7 +118,6 @@ class _Parcial3State extends State<Parcial3> {
 
   List<Widget> _listadoBebidas(data) {
     List<Widget> bebidaslist = [];
-
     for (var itembeb in data) {
       bebidaslist.add(Card(
         elevation: 0.5,
@@ -172,7 +198,7 @@ class _Parcial3State extends State<Parcial3> {
                       image: DecorationImage(
                           image: NetworkImage(itembeb.strDrinkThumb),
                           scale: 0.05),
-                      borderRadius: BorderRadius.circular(10)),
+                      borderRadius: BorderRadius.circular(15)),
                 ),
               ),
             ],
@@ -181,5 +207,23 @@ class _Parcial3State extends State<Parcial3> {
       ));
     }
     return bebidaslist;
+  }
+
+  Widget Buscar(String dato) {
+    return Container(
+      height: 60,
+      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      child: TextField(
+        decoration: InputDecoration(
+            hintText: dato,
+            fillColor: Color.fromARGB(111, 233, 214, 152),
+            filled: true,
+            prefixIcon: Icon(Entypo.magnifying_glass),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: const BorderSide(
+                    width: 1, color: Color.fromARGB(111, 233, 214, 152)))),
+      ),
+    );
   }
 }
